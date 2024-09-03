@@ -1,5 +1,5 @@
 {
-  "name": "datetime-picker",
+  "name": "lingua-time",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,9 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "chrono-node": "^1.4.9",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "date-fns": "^3.6.0",
+    "lucide-react": "^0.437.0",
+    "next": "14.2.7",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.2.7"
+    "tailwind-merge": "^2.5.2",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "typescript": "^5",
