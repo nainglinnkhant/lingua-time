@@ -41,6 +41,7 @@ export default function DatetimePicker() {
   const [suggestion, setSuggestion] = useState("")
   const [inputValue, setInputValue] = useState("")
   const [isOpen, setIsOpen] = useState(false)
+  const [isClosing, setClosing] = useState(false)
   const [selectedIndex, setSelectedIndex] = useState(-1)
 
   const inputRef = useRef<HTMLInputElement>(null)
@@ -48,7 +49,7 @@ export default function DatetimePicker() {
 
   const suggestions = generateSuggestions(inputValue, suggestion)
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     setInputValue(e.target.value)
     setIsOpen(true)
     setSelectedIndex(-1)
@@ -60,7 +61,7 @@ export default function DatetimePicker() {
     }
   }
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === "ArrowDown") {
       e.preventDefault()
       setSelectedIndex((prevIndex) =>
@@ -72,10 +73,18 @@ export default function DatetimePicker() {
     } else if (e.key === "Enter" && selectedIndex !== -1) {
       const dateStr = generateDateString(suggestions[selectedIndex])
       setInputValue(dateStr)
-      setIsOpen(false)
+      closeDropdown()
     } else if (e.key === "Escape") {
-      setIsOpen(false)
+      closeDropdown()
     }
+  }
+
+  function closeDropdown() {
+    setClosing(true)
+    setTimeout(() => {
+      setIsOpen(false)
+      setClosing(false)
+    }, 200)
   }
 
   useEffect(() => {
@@ -86,7 +95,7 @@ export default function DatetimePicker() {
         inputRef.current &&
         !inputRef.current.contains(e.target as Node)
       ) {
-        setIsOpen(false)
+        closeDropdown()
       }
     }
 
@@ -113,11 +122,15 @@ export default function DatetimePicker() {
         />
         <CalendarDays className="absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
       </div>
+
       {isOpen && suggestions.length > 0 && (
         <div
           ref={dropdownRef}
           role="dialog"
-          className="absolute z-10 mt-2 w-full rounded-md border bg-popover p-0 shadow-md"
+          className={cn(
+            "absolute z-10 mt-2 w-full rounded-md border bg-popover p-0 shadow-md transition-all animate-in fade-in-0 zoom-in-95 slide-in-from-top-2",
+            isClosing && "duration-300 animate-out fade-out-0 zoom-out-95"
+          )}
         >
           <ul className="max-h-52 overflow-auto p-1">
             {suggestions.map((suggestion, index) => (
@@ -132,12 +145,12 @@ export default function DatetimePicker() {
                 onClick={() => {
                   const dateStr = generateDateString(suggestion)
                   setInputValue(dateStr)
-                  setIsOpen(false)
+                  closeDropdown()
                   inputRef.current?.focus()
                 }}
                 onMouseEnter={() => setSelectedIndex(index)}
               >
-                <span>{suggestion}</span>
+                <span className="text-foreground">{suggestion}</span>
                 <span className="text-xs text-muted-foreground">
                   {generateDateString(suggestion)}
                 </span>
