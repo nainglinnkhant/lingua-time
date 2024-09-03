@@ -1,10 +1,12 @@
 "use client"
 
-import * as chrono from "chrono-node"
-import { Input } from "@/components/ui/input"
 import { useEffect, useRef, useState } from "react"
+import * as chrono from "chrono-node"
 import { format } from "date-fns"
 import { CalendarDays } from "lucide-react"
+
+import { cn } from "@/lib/utils"
+import { Input } from "@/components/ui/input"
 
 const defaultSuggestions = [
   "Tomorrow",
@@ -25,7 +27,7 @@ function generateSuggestions(inputValue: string, suggestion: string) {
     return defaultSuggestions
   }
 
-  const filteredDefaultSuggestions = defaultSuggestions.filter(suggestion =>
+  const filteredDefaultSuggestions = defaultSuggestions.filter((suggestion) =>
     suggestion.toLowerCase().includes(inputValue.toLowerCase())
   )
   if (filteredDefaultSuggestions.length) {
@@ -61,12 +63,12 @@ export default function DatetimePicker() {
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "ArrowDown") {
       e.preventDefault()
-      setSelectedIndex(prevIndex =>
+      setSelectedIndex((prevIndex) =>
         prevIndex < suggestions.length - 1 ? prevIndex + 1 : prevIndex
       )
     } else if (e.key === "ArrowUp") {
       e.preventDefault()
-      setSelectedIndex(prevIndex => (prevIndex > 0 ? prevIndex - 1 : 0))
+      setSelectedIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : 0))
     } else if (e.key === "Enter" && selectedIndex !== -1) {
       const dateStr = generateDateString(suggestions[selectedIndex])
       setInputValue(dateStr)
@@ -109,7 +111,7 @@ export default function DatetimePicker() {
           onClick={() => setIsOpen(true)}
           className="w-96"
         />
-        <CalendarDays className="absolute top-1/2 -translate-y-1/2 right-3 size-4 text-muted-foreground" />
+        <CalendarDays className="absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
       </div>
       {isOpen && suggestions.length > 0 && (
         <div
@@ -123,9 +125,10 @@ export default function DatetimePicker() {
                 key={suggestion}
                 role="option"
                 aria-selected={selectedIndex === index}
-                className={`flex justify-between items-center cursor-pointer px-2 py-1.5 rounded text-sm ${
-                  index === selectedIndex ? "bg-accent text-accent-foreground" : ""
-                }`}
+                className={cn(
+                  "flex cursor-pointer items-center justify-between rounded px-2 py-1.5 text-sm",
+                  index === selectedIndex && "bg-accent text-accent-foreground"
+                )}
                 onClick={() => {
                   const dateStr = generateDateString(suggestion)
                   setInputValue(dateStr)
