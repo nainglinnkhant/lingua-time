@@ -107,7 +107,7 @@ export default function DatetimePicker() {
   }, [])
 
   return (
-    <div className="relative">
+    <div className="relative w-full sm:w-96">
       <div className="relative">
         <Input
           ref={inputRef}
@@ -118,7 +118,6 @@ export default function DatetimePicker() {
           onKeyDown={handleKeyDown}
           onFocus={() => setIsOpen(true)}
           onClick={() => setIsOpen(true)}
-          className="w-96"
         />
         <CalendarDays className="absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
       </div>
@@ -132,14 +131,14 @@ export default function DatetimePicker() {
             isClosing && "duration-300 animate-out fade-out-0 zoom-out-95"
           )}
         >
-          <ul className="max-h-52 overflow-auto p-1">
+          <ul role="listbox" className="max-h-52 overflow-auto p-1">
             {suggestions.map((suggestion, index) => (
               <li
                 key={suggestion}
                 role="option"
                 aria-selected={selectedIndex === index}
                 className={cn(
-                  "flex cursor-pointer items-center justify-between rounded px-2 py-1.5 text-sm",
+                  "flex cursor-pointer items-center justify-between gap-1 rounded px-2 py-1.5 text-sm",
                   index === selectedIndex && "bg-accent text-accent-foreground"
                 )}
                 onClick={() => {
@@ -150,8 +149,10 @@ export default function DatetimePicker() {
                 }}
                 onMouseEnter={() => setSelectedIndex(index)}
               >
-                <span className="text-foreground">{suggestion}</span>
-                <span className="text-xs text-muted-foreground">
+                <span className="xs:w-auto w-[110px] truncate">
+                  {suggestion}
+                </span>
+                <span className="shrink-0 text-xs text-muted-foreground">
                   {generateDateString(suggestion)}
                 </span>
               </li>
