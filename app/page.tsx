@@ -1,10 +1,12 @@
+import localFont from "next/font/local"
+
 import { cn } from "@/lib/utils"
 import GridPattern from "@/components/ui/grid-pattern"
 import DatetimePicker from "@/components/datetime-picker"
 import Examples from "@/components/examples"
 import ThemeMenuButton from "@/components/theme-menu-button"
 
-import { calSans } from "./layout"
+const calSans = localFont({ src: "../fonts/CalSans-SemiBold.ttf" })
 
 export default function Home() {
   return (

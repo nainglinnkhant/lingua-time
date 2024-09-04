@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
-import localFont from "next/font/local"
 import { ThemeProvider } from "next-themes"
 
 import { siteConfig } from "@/config/site"
@@ -8,8 +7,7 @@ import { Toaster } from "@/components/ui/sonner"
 
 import "./globals.css"
 
-export const inter = Inter({ subsets: ["latin"] })
-export const calSans = localFont({ src: "../fonts/CalSans-SemiBold.ttf" })
+const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: siteConfig.title,
