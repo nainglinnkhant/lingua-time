@@ -137,7 +137,7 @@ export default function DatetimePicker() {
                 role="option"
                 aria-selected={selectedIndex === index}
                 className={cn(
-                  "flex cursor-pointer items-center justify-between gap-1 rounded p-2 text-sm",
+                  "flex cursor-pointer items-center justify-between gap-1 rounded px-2.5 py-2 text-sm",
                   index === selectedIndex && "bg-accent text-accent-foreground"
                 )}
                 onClick={() => {
