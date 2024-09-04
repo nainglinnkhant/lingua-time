@@ -11,7 +11,6 @@ import { Input } from "@/components/ui/input"
 const defaultSuggestions = [
   "Tomorrow",
   "Tomorrow morning",
-  "Tomorrow afternoon",
   "Tomorrow night",
   "Next Monday",
   "Next Sunday",
@@ -131,14 +130,14 @@ export default function DatetimePicker() {
             isClosing && "duration-300 animate-out fade-out-0 zoom-out-95"
           )}
         >
-          <ul role="listbox" className="max-h-52 overflow-auto p-1">
+          <ul role="listbox" className="max-h-56 overflow-auto p-1">
             {suggestions.map((suggestion, index) => (
               <li
                 key={suggestion}
                 role="option"
                 aria-selected={selectedIndex === index}
                 className={cn(
-                  "flex cursor-pointer items-center justify-between gap-1 rounded px-2 py-1.5 text-sm",
+                  "flex cursor-pointer items-center justify-between gap-1 rounded p-2 text-sm",
                   index === selectedIndex && "bg-accent text-accent-foreground"
                 )}
                 onClick={() => {
@@ -149,7 +148,7 @@ export default function DatetimePicker() {
                 }}
                 onMouseEnter={() => setSelectedIndex(index)}
               >
-                <span className="xs:w-auto w-[110px] truncate">
+                <span className="w-[110px] truncate xs:w-auto">
                   {suggestion}
                 </span>
                 <span className="shrink-0 text-xs text-muted-foreground">
