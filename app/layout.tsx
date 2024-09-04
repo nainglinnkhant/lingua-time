@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
+import { Analytics } from "@vercel/analytics/react"
 import { ThemeProvider } from "next-themes"
 
 import { siteConfig } from "@/config/site"
@@ -62,6 +63,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Toaster richColors />
         <ThemeProvider attribute="class">{children}</ThemeProvider>
+        <Analytics />
       </body>
     </html>
   )
