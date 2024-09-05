@@ -58,7 +58,7 @@ export default function DateTimePicker({ setDateTime }: DateTimePickerProps) {
   const [inputValue, setInputValue] = useState("")
   const [isOpen, setIsOpen] = useState(false)
   const [isClosing, setClosing] = useState(false)
-  const [selectedIndex, setSelectedIndex] = useState(-1)
+  const [selectedIndex, setSelectedIndex] = useState(0)
 
   const inputRef = useRef<HTMLInputElement>(null)
   const dropdownRef = useRef<HTMLDivElement>(null)
@@ -68,7 +68,7 @@ export default function DateTimePicker({ setDateTime }: DateTimePickerProps) {
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
     setInputValue(e.target.value)
     setIsOpen(true)
-    setSelectedIndex(-1)
+    setSelectedIndex(0)
     const result = chrono.parseDate(e.target.value)
     if (result) {
       setSuggestion({ date: result, inputString: e.target.value })
@@ -86,7 +86,7 @@ export default function DateTimePicker({ setDateTime }: DateTimePickerProps) {
     } else if (e.key === "ArrowUp") {
       e.preventDefault()
       setSelectedIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : 0))
-    } else if (e.key === "Enter" && selectedIndex !== -1) {
+    } else if (e.key === "Enter" && isOpen) {
       e.preventDefault()
       const dateStr = generateDateString(suggestions[selectedIndex].date)
       setInputValue(dateStr)
@@ -99,7 +99,7 @@ export default function DateTimePicker({ setDateTime }: DateTimePickerProps) {
 
   function closeDropdown() {
     setClosing(true)
-    setSelectedIndex(-1)
+    setSelectedIndex(0)
     setTimeout(() => {
       setIsOpen(false)
       setClosing(false)
