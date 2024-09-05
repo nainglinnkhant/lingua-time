@@ -2,10 +2,9 @@
 
 import { useEffect, useRef, useState } from "react"
 import * as chrono from "chrono-node"
-import { format } from "date-fns"
 import { CalendarDays } from "lucide-react"
 
-import { cn } from "@/lib/utils"
+import { cn, generateDate, generateDateString } from "@/lib/utils"
 import { Input } from "@/components/ui/input"
 
 const defaultSuggestions = [
@@ -16,28 +15,37 @@ const defaultSuggestions = [
   "Next Sunday",
 ]
 
-function generateDateString(suggestion: string) {
-  const result = chrono.parseDate(suggestion)
-  return format(result, "MMM do yyyy, hh:mm a")
-}
-
-function generateSuggestions(inputValue: string, suggestion: string) {
+function generateSuggestions(
+  inputValue: string,
+  suggestion: Suggestion | null
+): Suggestion[] {
   if (!inputValue.length) {
-    return defaultSuggestions
+    return defaultSuggestions.map((suggestion) => ({
+      date: generateDate(suggestion),
+      inputString: suggestion,
+    }))
   }
 
   const filteredDefaultSuggestions = defaultSuggestions.filter((suggestion) =>
     suggestion.toLowerCase().includes(inputValue.toLowerCase())
   )
   if (filteredDefaultSuggestions.length) {
-    return filteredDefaultSuggestions
+    return filteredDefaultSuggestions.map((suggestion) => ({
+      date: generateDate(suggestion),
+      inputString: suggestion,
+    }))
   }
 
-  return [suggestion].filter(Boolean)
+  return [suggestion].filter((suggestion) => suggestion !== null)
+}
+
+interface Suggestion {
+  date: Date
+  inputString: string
 }
 
 export default function DatetimePicker() {
-  const [suggestion, setSuggestion] = useState("")
+  const [suggestion, setSuggestion] = useState<Suggestion | null>(null)
   const [inputValue, setInputValue] = useState("")
   const [isOpen, setIsOpen] = useState(false)
   const [isClosing, setClosing] = useState(false)
@@ -54,9 +62,9 @@ export default function DatetimePicker() {
     setSelectedIndex(-1)
     const result = chrono.parseDate(e.target.value)
     if (result) {
-      setSuggestion(e.target.value)
+      setSuggestion({ date: result, inputString: e.target.value })
     } else {
-      setSuggestion("")
+      setSuggestion(null)
     }
   }
 
@@ -70,7 +78,7 @@ export default function DatetimePicker() {
       e.preventDefault()
       setSelectedIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : 0))
     } else if (e.key === "Enter" && selectedIndex !== -1) {
-      const dateStr = generateDateString(suggestions[selectedIndex])
+      const dateStr = generateDateString(suggestions[selectedIndex].date)
       setInputValue(dateStr)
       closeDropdown()
     } else if (e.key === "Escape") {
@@ -133,7 +141,7 @@ export default function DatetimePicker() {
           <ul role="listbox" className="max-h-56 overflow-auto p-1">
             {suggestions.map((suggestion, index) => (
               <li
-                key={suggestion}
+                key={suggestion.inputString}
                 role="option"
                 aria-selected={selectedIndex === index}
                 className={cn(
@@ -141,7 +149,7 @@ export default function DatetimePicker() {
                   index === selectedIndex && "bg-accent text-accent-foreground"
                 )}
                 onClick={() => {
-                  const dateStr = generateDateString(suggestion)
+                  const dateStr = generateDateString(suggestion.date)
                   setInputValue(dateStr)
                   closeDropdown()
                   inputRef.current?.focus()
@@ -149,10 +157,10 @@ export default function DatetimePicker() {
                 onMouseEnter={() => setSelectedIndex(index)}
               >
                 <span className="w-[110px] truncate xs:w-auto">
-                  {suggestion}
+                  {suggestion.inputString}
                 </span>
                 <span className="shrink-0 text-xs text-muted-foreground">
-                  {generateDateString(suggestion)}
+                  {generateDateString(suggestion.date)}
                 </span>
               </li>
             ))}
