@@ -2,7 +2,7 @@ import localFont from "next/font/local"
 
 import { cn } from "@/lib/utils"
 import GridPattern from "@/components/ui/grid-pattern"
-import DatetimePicker from "@/components/datetime-picker"
+import DateTimeForm from "@/components/datetime-form"
 import Examples from "@/components/examples"
 import ThemeMenuButton from "@/components/theme-menu-button"
 
@@ -45,7 +45,7 @@ export default function Home() {
           <p className="mb-8 w-full text-sm sm:w-96">
             A smart datetime picker which understands natural language input.
           </p>
-          <DatetimePicker />
+          <DateTimeForm />
           <Examples />
         </div>
       </main>

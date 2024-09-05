@@ -4,7 +4,12 @@ import { useEffect, useRef, useState } from "react"
 import * as chrono from "chrono-node"
 import { CalendarDays } from "lucide-react"
 
-import { cn, generateDate, generateDateString } from "@/lib/utils"
+import {
+  cn,
+  generateDate,
+  generateDateString,
+  isValidDateFormat,
+} from "@/lib/utils"
 import { Input } from "@/components/ui/input"
 
 const defaultSuggestions = [
@@ -44,7 +49,11 @@ interface Suggestion {
   inputString: string
 }
 
-export default function DatetimePicker() {
+interface DateTimePickerProps {
+  setDateTime: React.Dispatch<React.SetStateAction<Date | null>>
+}
+
+export default function DateTimePicker({ setDateTime }: DateTimePickerProps) {
   const [suggestion, setSuggestion] = useState<Suggestion | null>(null)
   const [inputValue, setInputValue] = useState("")
   const [isOpen, setIsOpen] = useState(false)
@@ -78,8 +87,10 @@ export default function DatetimePicker() {
       e.preventDefault()
       setSelectedIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : 0))
     } else if (e.key === "Enter" && selectedIndex !== -1) {
+      e.preventDefault()
       const dateStr = generateDateString(suggestions[selectedIndex].date)
       setInputValue(dateStr)
+      setDateTime(suggestions[selectedIndex].date)
       closeDropdown()
     } else if (e.key === "Escape") {
       closeDropdown()
@@ -88,11 +99,17 @@ export default function DatetimePicker() {
 
   function closeDropdown() {
     setClosing(true)
+    setSelectedIndex(-1)
     setTimeout(() => {
       setIsOpen(false)
       setClosing(false)
     }, 200)
   }
+
+  useEffect(() => {
+    if (!inputValue) setDateTime(null)
+    if (!isValidDateFormat(inputValue)) setDateTime(null)
+  }, [inputValue, setDateTime])
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -151,6 +168,7 @@ export default function DatetimePicker() {
                 onClick={() => {
                   const dateStr = generateDateString(suggestion.date)
                   setInputValue(dateStr)
+                  setDateTime(suggestion.date)
                   closeDropdown()
                   inputRef.current?.focus()
                 }}
