@@ -19,7 +19,7 @@ export default function Examples() {
   }
 
   return (
-    <div className="mt-6 w-full text-sm sm:w-96">
+    <div className="mt-7 w-full text-sm sm:w-96">
       <p className="mb-2">Try these:</p>
       <ul className="ml-4 flex list-disc flex-col gap-1">
         {examples.map((example) => (

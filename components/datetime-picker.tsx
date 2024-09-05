@@ -10,7 +10,9 @@ import {
   generateDateString,
   isValidDateFormat,
 } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import DateTimePickerPopover from "@/components/datetime-picker-popover"
 
 const defaultSuggestions = [
   "Tomorrow",
@@ -50,10 +52,14 @@ interface Suggestion {
 }
 
 interface DateTimePickerProps {
-  setDateTime: React.Dispatch<React.SetStateAction<Date | null>>
+  dateTime: Date | undefined
+  setDateTime: React.Dispatch<React.SetStateAction<Date | undefined>>
 }
 
-export default function DateTimePicker({ setDateTime }: DateTimePickerProps) {
+export default function DateTimePicker({
+  dateTime,
+  setDateTime,
+}: DateTimePickerProps) {
   const [suggestion, setSuggestion] = useState<Suggestion | null>(null)
   const [inputValue, setInputValue] = useState("")
   const [isOpen, setIsOpen] = useState(false)
@@ -86,7 +92,7 @@ export default function DateTimePicker({ setDateTime }: DateTimePickerProps) {
     } else if (e.key === "ArrowUp") {
       e.preventDefault()
       setSelectedIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : 0))
-    } else if (e.key === "Enter" && isOpen) {
+    } else if (e.key === "Enter" && isOpen && suggestions.length > 0) {
       e.preventDefault()
       const dateStr = generateDateString(suggestions[selectedIndex].date)
       setInputValue(dateStr)
@@ -107,8 +113,8 @@ export default function DateTimePicker({ setDateTime }: DateTimePickerProps) {
   }
 
   useEffect(() => {
-    if (!inputValue) setDateTime(null)
-    if (!isValidDateFormat(inputValue)) setDateTime(null)
+    if (!inputValue) setDateTime(undefined)
+    if (!isValidDateFormat(inputValue)) setDateTime(undefined)
   }, [inputValue, setDateTime])
 
   useEffect(() => {
@@ -131,7 +137,7 @@ export default function DateTimePicker({ setDateTime }: DateTimePickerProps) {
   }, [])
 
   return (
-    <div className="relative w-full sm:w-96">
+    <div className="relative">
       <div className="relative">
         <Input
           ref={inputRef}
@@ -143,7 +149,21 @@ export default function DateTimePicker({ setDateTime }: DateTimePickerProps) {
           onFocus={() => setIsOpen(true)}
           onClick={() => setIsOpen(true)}
         />
-        <CalendarDays className="absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+        <DateTimePickerPopover
+          onOpen={() => setSuggestion(null)}
+          dateTime={dateTime}
+          setDateTime={setDateTime}
+          setInputValue={setInputValue}
+        >
+          <Button
+            size="icon"
+            variant="ghost"
+            className="absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
+          >
+            <span className="sr-only">Open normal date time picker</span>
+            <CalendarDays />
+          </Button>
+        </DateTimePickerPopover>
       </div>
 
       {isOpen && suggestions.length > 0 && (

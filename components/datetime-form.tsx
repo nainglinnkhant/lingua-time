@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import DateTimePicker from "@/components/datetime-picker"
 
 export default function DateTimeForm() {
-  const [dateTime, setDateTime] = useState<Date | null>(null)
+  const [dateTime, setDateTime] = useState<Date | undefined>(undefined)
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -19,9 +19,9 @@ export default function DateTimeForm() {
 
   return (
     <form onSubmit={handleSubmit} className="w-full sm:w-96">
-      <DateTimePicker setDateTime={setDateTime} />
+      <DateTimePicker dateTime={dateTime} setDateTime={setDateTime} />
 
-      <Button type="submit" size="sm" className="mt-4">
+      <Button type="submit" size="sm" className="mt-3">
         Submit
       </Button>
     </form>
