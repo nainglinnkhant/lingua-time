@@ -18,7 +18,7 @@ export default function DateTimeForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="w-full sm:w-96">
       <DateTimePicker setDateTime={setDateTime} />
 
       <Button type="submit" size="sm" className="mt-4">
