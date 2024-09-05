@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 import { generateDateString } from "@/lib/utils"
 import { Calendar } from "@/components/ui/calendar"
@@ -13,6 +13,7 @@ import { TimePicker } from "@/components/time-picker/time-picker"
 
 interface DateTimePickerPopoverProps {
   children: React.ReactNode
+  onOpen: () => void
   dateTime: Date | undefined
   setDateTime: React.Dispatch<React.SetStateAction<Date | undefined>>
   setInputValue: React.Dispatch<React.SetStateAction<string>>
@@ -20,10 +21,13 @@ interface DateTimePickerPopoverProps {
 
 export default function DateTimePickerPopover({
   children,
+  onOpen,
   dateTime,
   setDateTime,
   setInputValue,
 }: DateTimePickerPopoverProps) {
+  const [isOpen, setIsOpen] = useState(false)
+
   useEffect(() => {
     if (dateTime) {
       setInputValue(generateDateString(dateTime))
@@ -31,7 +35,13 @@ export default function DateTimePickerPopover({
   }, [dateTime, setInputValue])
 
   return (
-    <Popover>
+    <Popover
+      open={isOpen}
+      onOpenChange={(value) => {
+        onOpen()
+        setIsOpen(value)
+      }}
+    >
       <PopoverTrigger asChild>{children}</PopoverTrigger>
       <PopoverContent align="center" side="right" className="w-auto p-0">
         <Calendar

@@ -150,6 +150,7 @@ export default function DateTimePicker({
           onClick={() => setIsOpen(true)}
         />
         <DateTimePickerPopover
+          onOpen={() => setSuggestion(null)}
           dateTime={dateTime}
           setDateTime={setDateTime}
           setInputValue={setInputValue}
