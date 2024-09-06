@@ -61,8 +61,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
+        <ThemeProvider attribute="class">
+          <div vaul-drawer-wrapper="">
+            <div className="relative bg-background">{children}</div>
+          </div>
+        </ThemeProvider>
         <Toaster richColors />
-        <ThemeProvider attribute="class">{children}</ThemeProvider>
         <Analytics />
       </body>
     </html>
