@@ -5,7 +5,7 @@ import { toast } from "sonner"
 
 import { generateDateString } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import DateTimePicker from "@/components/datetime-picker"
+import { DateTimePicker } from "@/components/datetime-picker"
 
 export default function DateTimeForm() {
   const [dateTime, setDateTime] = useState<Date | undefined>(undefined)

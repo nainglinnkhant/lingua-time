@@ -28,7 +28,7 @@ interface DateTimePickerPopoverProps {
   setInputValue: React.Dispatch<React.SetStateAction<string>>
 }
 
-export default function DateTimePickerPopover({
+export function DateTimePickerPopover({
   children,
   onOpen,
   dateTime,

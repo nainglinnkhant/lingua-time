@@ -26,7 +26,7 @@ export default function Examples() {
           <li key={example}>
             <Button
               variant="ghost"
-              className="h-auto p-0 font-normal hover:bg-transparent active:bg-transparent"
+              className="h-auto rounded-sm p-0 font-normal hover:bg-transparent active:bg-transparent"
               // eslint-disable-next-line @typescript-eslint/no-misused-promises
               onClick={() => copy(example)}
             >
