@@ -7,12 +7,12 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function generateDateString(suggestion: Date) {
-  return format(suggestion, "MMM do yyyy, hh:mm a")
+export function generateDateString(date: Date) {
+  return format(date, "MMM do yyyy, hh:mm a")
 }
 
-export function generateDate(suggestion: string) {
-  return chrono.parseDate(suggestion)
+export function generateDate(date: string) {
+  return chrono.parseDate(date)
 }
 
 const dateFormatRegex =
