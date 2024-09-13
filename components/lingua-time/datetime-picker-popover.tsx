@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react"
 
-import { generateDateString } from "@/lib/utils"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { Calendar } from "@/components/ui/calendar"
 import {
@@ -19,6 +18,8 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { TimePicker } from "@/components/time-picker/time-picker"
+
+import { generateDateString } from "./datetime-utils"
 
 interface DateTimePickerPopoverProps {
   children: React.ReactNode

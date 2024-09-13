@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { z } from "zod"
 
-import { generateDateString } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -15,7 +14,8 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
-import { DateTimePicker } from "@/components/datetime-picker"
+import { DateTimePicker } from "@/components/lingua-time/datetime-picker"
+import { generateDateString } from "@/components/lingua-time/datetime-utils"
 
 const formSchema = z.object({
   dateTime: z.date({

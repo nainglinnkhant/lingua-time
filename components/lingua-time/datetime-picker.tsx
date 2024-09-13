@@ -10,15 +10,16 @@ import {
 import * as chrono from "chrono-node"
 import { CalendarDays } from "lucide-react"
 
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+
+import { DateTimePickerPopover } from "./datetime-picker-popover"
 import {
-  cn,
   generateDate,
   generateDateString,
   isValidDateFormat,
-} from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { DateTimePickerPopover } from "@/components/datetime-picker-popover"
+} from "./datetime-utils"
 
 const defaultSuggestions = [
   "Tomorrow",
