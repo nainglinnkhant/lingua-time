@@ -183,8 +183,14 @@ export const DateTimePicker = forwardRef<HTMLInputElement, DateTimePickerProps>(
               "absolute z-10 mt-2 w-full rounded-md border bg-popover p-0 shadow-md transition-all animate-in fade-in-0 zoom-in-95 slide-in-from-top-2",
               isClosing && "duration-300 animate-out fade-out-0 zoom-out-95"
             )}
+            tabIndex={-1}
+            aria-label="Suggestions"
           >
-            <ul role="listbox" className="max-h-56 overflow-auto p-1">
+            <ul
+              role="listbox"
+              aria-label="Suggestions"
+              className="max-h-56 overflow-auto p-1"
+            >
               {suggestions.map((suggestion, index) => (
                 <li
                   key={suggestion.inputString}

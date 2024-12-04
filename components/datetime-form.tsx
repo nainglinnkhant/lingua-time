@@ -58,6 +58,7 @@ export default function DateTimeForm() {
                   onBlur={onBlur}
                   disabled={disabled}
                   autoComplete="off"
+                  aria-describedby={undefined}
                 />
               </FormControl>
               <FormMessage className="pl-0.5 font-normal" />
