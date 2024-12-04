@@ -106,7 +106,7 @@ export const DateTimePicker = forwardRef<HTMLInputElement, DateTimePickerProps>(
         setInputValue(dateStr)
         setDateTime(suggestions[selectedIndex].date)
         closeDropdown()
-      } else if (e.key === "Escape") {
+      } else if (e.key === "Escape" || e.key === "Tab") {
         closeDropdown()
       }
     }
