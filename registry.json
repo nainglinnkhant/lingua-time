@@ -23,37 +23,37 @@
       "files": [
         {
           "path": "components/lingua-time/datetime-picker-popover.tsx",
-          "target": "~/components/ui/lingua-time/datetime-picker-popover.tsx",
+          "target": "~/app/components/ui/lingua-time/datetime-picker-popover.tsx",
           "type": "registry:component"
         },
         {
           "path": "components/lingua-time/datetime-picker.tsx",
-          "target": "~/components/ui/lingua-time/datetime-picker.tsx",
+          "target": "~/app/components/ui/lingua-time/datetime-picker.tsx",
           "type": "registry:component"
         },
         {
           "path": "components/lingua-time/datetime-utils.ts",
-          "target": "~/components/ui/lingua-time/datetime-utils.ts",
+          "target": "~/app/components/ui/lingua-time/datetime-utils.ts",
           "type": "registry:component"
         },
         {
           "path": "components/time-picker/period-select.tsx",
-          "target": "~/components/ui/time-picker/period-select.tsx",
+          "target": "~/app/components/ui/time-picker/period-select.tsx",
           "type": "registry:component"
         },
         {
           "path": "components/time-picker/time-picker-input.tsx",
-          "target": "~/components/ui/time-picker/time-picker-input.tsx",
+          "target": "~/app/components/ui/time-picker/time-picker-input.tsx",
           "type": "registry:component"
         },
         {
           "path": "components/time-picker/time-picker-utils.ts",
-          "target": "~/components/ui/time-picker/time-picker-utils.ts",
+          "target": "~/app/components/ui/time-picker/time-picker-utils.ts",
           "type": "registry:component"
         },
         {
           "path": "components/time-picker/time-picker.tsx",
-          "target": "~/components/ui/time-picker/time-picker.tsx",
+          "target": "~/app/components/ui/time-picker/time-picker.tsx",
           "type": "registry:component"
         }
       ]
