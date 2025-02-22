@@ -7,8 +7,8 @@
       "name": "lingua-time",
       "title": "lingua-time",
       "description": "A smart datetime picker which understands natural language input",
-      "type": "registry:ui",
-      "dependencies": ["chrono-node", "date-fns"],
+      "type": "registry:component",
+      "dependencies": ["chrono-node", "date-fns", "lucide-react"],
       "registryDependencies": [
         "button",
         "calendar",
@@ -24,37 +24,37 @@
         {
           "path": "components/lingua-time/datetime-picker-popover.tsx",
           "target": "components/ui/lingua-time/datetime-picker-popover.tsx",
-          "type": "registry:ui"
+          "type": "registry:component"
         },
         {
           "path": "components/lingua-time/datetime-picker.tsx",
           "target": "components/ui/lingua-time/datetime-picker.tsx",
-          "type": "registry:ui"
+          "type": "registry:component"
         },
         {
           "path": "components/lingua-time/datetime-utils.ts",
           "target": "components/ui/lingua-time/datetime-utils.ts",
-          "type": "registry:ui"
+          "type": "registry:component"
         },
         {
           "path": "components/time-picker/period-select.tsx",
           "target": "components/ui/time-picker/period-select.tsx",
-          "type": "registry:ui"
+          "type": "registry:component"
         },
         {
           "path": "components/time-picker/time-picker-input.tsx",
           "target": "components/ui/time-picker/time-picker-input.tsx",
-          "type": "registry:ui"
+          "type": "registry:component"
         },
         {
           "path": "components/time-picker/time-picker-utils.ts",
           "target": "components/ui/time-picker/time-picker-utils.ts",
-          "type": "registry:ui"
+          "type": "registry:component"
         },
         {
           "path": "components/time-picker/time-picker.tsx",
           "target": "components/ui/time-picker/time-picker.tsx",
-          "type": "registry:ui"
+          "type": "registry:component"
         }
       ]
     }
