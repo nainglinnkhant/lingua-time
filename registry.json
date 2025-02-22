@@ -1,0 +1,57 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "downshift-shadcn-combobox",
+  "homepage": "https://downshift-shadcn-combobox.vercel.app/",
+  "items": [
+    {
+      "name": "downshift-combobox",
+      "title": "Combobox",
+      "description": "An autocomplete input and command palette with a list of suggestions. Built using Downshift.",
+      "type": "registry:ui",
+      "dependencies": ["downshift"],
+      "registryDependencies": ["input", "popover", "scroll-area"],
+      "files": [
+        {
+          "path": "src/registry/combobox/combobox.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/combobox/combobox.tsx"
+        },
+        {
+          "path": "src/registry/combobox/combobox-content.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/combobox/combobox-content.tsx"
+        },
+        {
+          "path": "src/registry/combobox/combobox-empty.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/combobox/combobox-empty.tsx"
+        },
+        {
+          "path": "src/registry/combobox/combobox-input.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/combobox/combobox-input.tsx"
+        },
+        {
+          "path": "src/registry/combobox/combobox-item.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/combobox/combobox-item.tsx"
+        },
+        {
+          "path": "src/registry/combobox/context.ts",
+          "type": "registry:ui",
+          "target": "components/ui/combobox/context.ts"
+        },
+        {
+          "path": "src/registry/combobox/index.ts",
+          "type": "registry:ui",
+          "target": "components/ui/combobox/index.ts"
+        },
+        {
+          "path": "src/registry/combobox/types.ts",
+          "type": "registry:ui",
+          "target": "components/ui/combobox/types.ts"
+        }
+      ]
+    }
+  ]
+}
