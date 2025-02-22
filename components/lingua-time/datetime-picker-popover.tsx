@@ -17,8 +17,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
-import { TimePicker } from "@/components/time-picker/time-picker"
 
+import { TimePicker } from "../time-picker/time-picker"
 import { generateDateString } from "./datetime-utils"
 
 interface DateTimePickerPopoverProps {
