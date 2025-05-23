@@ -1,0 +1,62 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "lingua-time",
+  "homepage": "https://github.com/nainglinnkhant/lingua-time",
+  "items": [
+    {
+      "name": "lingua-time",
+      "title": "lingua-time",
+      "description": "A smart datetime picker which understands natural language input",
+      "type": "registry:component",
+      "dependencies": ["chrono-node", "date-fns", "lucide-react"],
+      "registryDependencies": [
+        "button",
+        "calendar",
+        "drawer",
+        "dropdown-menu",
+        "input",
+        "label",
+        "popover",
+        "select",
+        "https://hookagain.vercel.app/r/use-media-query.json"
+      ],
+      "files": [
+        {
+          "path": "components/lingua-time/datetime-picker-popover.tsx",
+          "target": "~/app/components/lingua-time/datetime-picker-popover.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/lingua-time/datetime-picker.tsx",
+          "target": "~/app/components/lingua-time/datetime-picker.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/lingua-time/datetime-utils.ts",
+          "target": "~/app/components/lingua-time/datetime-utils.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/time-picker/period-select.tsx",
+          "target": "~/app/components/time-picker/period-select.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/time-picker/time-picker-input.tsx",
+          "target": "~/app/components/time-picker/time-picker-input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/time-picker/time-picker-utils.ts",
+          "target": "~/app/components/time-picker/time-picker-utils.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/time-picker/time-picker.tsx",
+          "target": "~/app/components/time-picker/time-picker.tsx",
+          "type": "registry:component"
+        }
+      ]
+    }
+  ]
+}
